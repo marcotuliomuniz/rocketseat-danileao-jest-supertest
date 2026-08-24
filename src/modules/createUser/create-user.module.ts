@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CreateUserController } from './create-user.controller';
 import { CreateUserService } from './create-user.service';
-import { UserRepository } from 'src/repositories/user.repository';
+import { UserRepositoryInMemory } from '../../repositories/user.repository-in-memory';
 
 @Module({
   imports: [],
@@ -10,7 +10,7 @@ import { UserRepository } from 'src/repositories/user.repository';
     CreateUserService,
     {
       provide: 'UserRepository',
-      useClass: UserRepository,
+      useClass: UserRepositoryInMemory,
     },
   ],
 })

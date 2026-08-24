@@ -1,8 +1,8 @@
-import { UserEntinty } from 'src/entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 
 interface IUserRepository {
-  create(user: UserEntinty): UserEntinty;
-  exists(username: string): boolean;
+  create(user: UserEntity): Promise<UserEntity>;
+  exists(username: string): Promise<boolean>;
 }
 
 export type { IUserRepository };

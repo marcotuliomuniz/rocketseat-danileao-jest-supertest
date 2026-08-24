@@ -1,7 +1,7 @@
 import { Inject, Injectable, ConflictException } from '@nestjs/common';
 import type { IUserRepository } from '../../interfaces/users-repository.interface';
 import type { UserRequestDTO } from '../../dto/user-request.dto';
-import { UserEntinty } from '../../entities/user.entity';
+import { UserEntity } from '../../entities/user.entity';
 
 @Injectable()
 class CreateUserService {
@@ -10,15 +10,15 @@ class CreateUserService {
     private usersRepository: IUserRepository,
   ) {}
 
-  execute({ email, username, name }: UserRequestDTO) {
-    const userAlreadyExists = this.usersRepository.exists(username);
+  async execute({ email, username, name }: UserRequestDTO) {
+    const userAlreadyExists = await this.usersRepository.exists(username);
 
     if (userAlreadyExists) {
       throw new ConflictException('User already exists!');
     }
 
-    const userCreate = UserEntinty.create({ email, username, name });
-    const user = this.usersRepository.create(userCreate);
+    const userCreate = UserEntity.create({ email, username, name });
+    const user = await this.usersRepository.create(userCreate);
     return user;
   }
 }

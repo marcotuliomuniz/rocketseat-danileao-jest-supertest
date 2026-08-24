@@ -1,22 +1,22 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CreateUserService } from './create-user.service';
-import type { UserRequestDTO } from 'src/dto/user-request.dto';
+import type { UserRequestDTO } from '../../dto/user-request.dto';
 
 @Controller('user')
 export class CreateUserController {
-  constructor(private readonly CreateUserService: CreateUserService) {}
+  constructor(private readonly createUserService: CreateUserService) {}
 
   @Post('create')
-  public create(@Body() body: UserRequestDTO): string {
+  public async create(@Body() body: UserRequestDTO): Promise<string> {
     const { name, username, email } = body;
 
-    this.CreateUserService.execute({ name, username, email });
+    await this.createUserService.execute({ name, username, email });
 
-    return 'sucess!';
+    return 'Sucess!';
   }
 
-  @Get('helloworld')
+  @Get()
   public get(): string {
-    return 'Hello World!';
+    return 'Welcome to my implementation of the Rocketseat Codedrop using Jest and SuperTest!';
   }
 }

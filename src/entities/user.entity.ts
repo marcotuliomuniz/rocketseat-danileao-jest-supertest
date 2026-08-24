@@ -1,4 +1,4 @@
-class UserEntinty {
+class UserEntity {
   id?: string;
   // eslint-disable-next-line
   //@ts-ignore
@@ -10,7 +10,7 @@ class UserEntinty {
   //@ts-ignore
   email: string;
 
-  private constructor({ name, username, email }: UserEntinty) {
+  private constructor({ name, username, email }: UserEntity) {
     return Object.assign(this, {
       name,
       username,
@@ -18,10 +18,10 @@ class UserEntinty {
     });
   }
 
-  static create({ name, username, email }: UserEntinty) {
-    const user = new UserEntinty({ name, username, email });
+  static create({ name, username, email }: UserEntity) {
+    const user = new UserEntity({ name, username, email });
     return user;
   }
 }
 
-export { UserEntinty };
+export { UserEntity };
