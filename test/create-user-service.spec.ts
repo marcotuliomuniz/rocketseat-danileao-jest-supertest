@@ -16,8 +16,6 @@ describe('Create User Service', () => {
   it('It should be possible to create a user.', async () => {
     const user = await createUserService.execute(USERMOCK.DATA);
 
-    console.log(user);
-
     expect(user).toHaveProperty('id');
     expect(user.id).toBeDefined();
   });
